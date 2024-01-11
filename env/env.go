@@ -29,7 +29,10 @@ func Strings(key string, sep string, defaultValue ...[]string) []string {
 	value := make([]string, 0)
 
 	for _, item := range strings.Split(String(key), sep) {
-		value = append(value, strings.Trim(item, " "))
+		v := strings.Trim(item, " ")
+		if len(v) > 0 {
+			value = append(value, v)
+		}
 	}
 
 	if len(value) < 1 && len(defaultValue) > 0 {
